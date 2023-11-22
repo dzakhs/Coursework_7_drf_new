@@ -22,7 +22,7 @@ class HabitTestCase(APITestCase):
             )
         self.client.force_authenticate(user=self.user)
 
-        self.habit = Habit.objects.create(user=self.user, time='15:00:00', action="test", place="test", pleasant_habit=False, frequency=1, reward="test", execution_time='00:01:40', is_public=False)
+        self.habit = Habit.objects.create(user=self.user, time='15:00:00', action="test", place="test", pleasant_habit=False, frequency=1, reward="test", execution_time=100, is_public=False)
 
     def test_create_habit(self):
         data = {
@@ -34,7 +34,7 @@ class HabitTestCase(APITestCase):
             "related_habit": "",
             "frequency": 1,
             "reward": "test",
-            "execution_time": "00:01:40",
+            "execution_time": 100,
             "is_public": "False"
         }
         response = self.client.post("/habit/create/", data)
@@ -46,7 +46,7 @@ class HabitTestCase(APITestCase):
         Тестирование вывода списка привычек
         """
         response = self.client.get(
-            reverse('main:habit-list')
+            reverse('habit:habit-list')
         )
 
         self.assertEqual(
@@ -65,7 +65,7 @@ class HabitTestCase(APITestCase):
         response = self.client.patch(update_url, data=updata)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(
-            response.json(),{'id': self.habit.id, 'user': self.user.id, 'action': 'test_ok', 'place': 'test'})
+            response.json(), {'id': self.habit.id, 'user': self.user.id, 'action': 'test_ok', 'place': 'test'})
 
     def test_detail_habit(self):
         """
@@ -87,7 +87,7 @@ class HabitTestCase(APITestCase):
             "related_habit": "test",
             "frequency": 1,
             "reward": "test",
-            "execution_time": "00:01:40",
+            "execution_time": 100,
             "is_public": "False"
         }
         response = self.client.post(f'/habit/create/', data)

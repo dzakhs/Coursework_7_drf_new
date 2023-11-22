@@ -29,7 +29,7 @@ class HabitListAPIView(generics.ListAPIView):
         if user.is_staff:
             queryset = Habit.objects.all()
         else:
-            queryset = Habit.objects.filter(creator=self.request.user)
+            queryset = Habit.objects.filter(user=self.request.user)
         return queryset
 
 

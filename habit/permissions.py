@@ -1,4 +1,4 @@
-from rest_framework import permissions
+
 
 from rest_framework import permissions
 
@@ -11,12 +11,12 @@ class IsCreatorOrStaff(permissions.BasePermission):
     def has_permission(self, request, view):
         if request.user.is_staff:
             return True
-        return request.user == view.get_object().creator
+        return request.user == view.get_object().user
 
     def has_object_permission(self, request, view, obj):
         if request.method in permissions.SAFE_METHODS:  # Разрешить только чтение для неавторизованных пользователей
             return True
-        return obj.creator == request.user  # Разрешить изменение или удаление только владельцу привычки
+        return obj.user == request.user  # Разрешить изменение или удаление только владельцу привычки
 
 
 class IsOwner(permissions.BasePermission):
