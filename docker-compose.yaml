@@ -34,7 +34,7 @@ services:
   celery:
     build: .
     container_name: celery_app
-    command: celery -A config worker -l INFO --loglevel warning
+    command: celery -A Coursework_7_drf worker -l INFO --loglevel warning
     volumes:
       - celery_data:/app
     depends_on:
@@ -52,7 +52,7 @@ services:
   celery-beat:
     build: .
     container_name: celery_beat_app
-    command: celery -A config beat -l info -S django --loglevel warning
+    command: celery -A Coursework_7_drf beat -l info -S django --loglevel warning
     volumes:
       - celery_beat_data:/app
     depends_on:
