@@ -14,3 +14,10 @@
    + celery -A Coursework_7_drf worker -l INFO -P eventlet
    + celery -A Coursework_7_drf beat -l info -S django
    + python manage.py runserver
+
+### Для запуска проекта через Docker:
+1. Клонируем проект с GitHub
+2. Создаем файл .env по форме .env.sample
+3. В терминале пишем команду docker-compose build
+4. Далее выполняем docker-compose-up 
+
