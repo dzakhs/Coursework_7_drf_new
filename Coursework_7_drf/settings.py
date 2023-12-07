@@ -109,9 +109,11 @@ WSGI_APPLICATION = 'Coursework_7_drf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DB_NAME',
-        'USER': 'DB_USER',
-        'PASSWORD': 'DB_PASSWORD',
+        'NAME': 'cw_7',
+        'USER': 'postgres',
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': 'db',
+        "PORT": '5432',
 
     }
 }
